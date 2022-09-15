@@ -41,11 +41,20 @@ export function Home() {
   }
 
   function handleFilterLoginData() {
-    // Filter results inside data, save with setSearchListData
+    if (searchText !== '') {
+      const filteredData: LoginDataProps[] =
+        data.filter(item => item.service_name === searchText);
+      
+      setSearchListData(filteredData);
+    }
   }
 
   function handleChangeInputText(text: string) {
-    // Update searchText value
+    if (text !== '') {
+      setSearchText(text);
+    } else {
+      setSearchListData(data);
+    }
   }
 
   useFocusEffect(useCallback(() => {
